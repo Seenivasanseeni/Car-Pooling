@@ -19,9 +19,7 @@
 		$UserName=$_COOKIE['UserName'];
 		$source=$_POST['source'];
 		$destination=$_POST['destination'];
-		#echo "Source:".$source."<br />"; working 
-		#echo "Destination:".$destination."<br />"; #working
-
+		
 		try{
 			$conn=new PDO("mysql:host=localhost;dbname=CarPool","guestPooler","qwerty1234");
 			echo "Connected<br />";
@@ -38,7 +36,7 @@
 	?>
 
 </body>
-
+<br />
 <a href="HomePage.php">Home</a>
 
 </html>

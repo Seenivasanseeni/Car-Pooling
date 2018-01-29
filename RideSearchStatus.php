@@ -14,16 +14,10 @@
 			die();
 		}
 		//if signed in
-		echo "You are in Ride Search Page";
+		echo "You are in Ride Search Status Page";
 	?>
 <br />
 <a href="HomePage.php">Home</a>
-
-<form action="RideSearchStatus.php" method="POST">
-	<p>Source<input type="text" name="source" required=""></p>
-	<p>Destination<input type="text" name="destination" required=""></p>
-	<p><input type="submit" name="submit"></p>
-</form>
 
 </body>
 

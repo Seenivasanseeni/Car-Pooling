@@ -18,5 +18,6 @@
 	?>
 
 </body>
+<br />
 <a href="HomePage.php">Home</a>
 </html>

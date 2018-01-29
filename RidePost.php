@@ -18,7 +18,7 @@
 	?>
 
 </body>
-
+<br />
 <a href="HomePage.php">Home</a>
 
 <form action="RidePostStatus.php" method="POST">

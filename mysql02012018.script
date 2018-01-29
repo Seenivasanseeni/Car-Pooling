@@ -274,7 +274,7 @@ ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that 
 mysql> select * from Rides;
 Empty set (0.00 sec)
 
-mysql> select * from Payments;
+mysql>  select * from Payments;
 Empty set (0.00 sec)
 
 mysql> alter table Payments add column Amount float not null;
@@ -293,4 +293,4 @@ mysql> describe Payments;
 
 mysql> ^C
 mysql> ^C
-mysql> 
+mysql>  alter table Rides modify RideId int auto_increment;                     

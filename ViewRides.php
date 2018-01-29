@@ -14,10 +14,9 @@
 			die();
 		}
 		//if signed in
-		echo "You are sucessfully signed in <br />";
 		echo "You are in View Rides Page";
 	?>
 
 </body>
-
+<a href="HomePage.php">Home</a>
 </html>

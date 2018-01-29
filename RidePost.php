@@ -15,14 +15,9 @@
 		}
 		//if signed in
 		echo "You are sucessfully signed in <br />";
-		echo "You are in Your  Home Page";
+		echo "You are in Ride Post Page";
 	?>
 
-	<h5>Choose any of the below</h5>
-	<a href="RidePost.php"><h5>1.Post a Ride</h5></a>
-	<a href="RideSearch.php"><h5>2.Search a Ride</h5></a>
-	<a href="ViewRides.php"><h5>3.View my Rides</h5></a>
-	<a href="Logout.php"><h5>4.Logout</h5></a>
 </body>
 
 </html>

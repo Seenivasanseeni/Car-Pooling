@@ -8,10 +8,11 @@
 		}
 	</style>
 </head>
+
 <body>
-<form method="POST" action="HomePage.php">
-	<p>UserName<input type="text" name="UserName"></p>
-	<p>Password<input type="password" name="Password"></p>
+<form method="POST" action="authenticate.php">
+	<p>UserName<input type="text" name="UserName" required=""></p>
+	<p>Password<input type="password" name="Password" required=""></p>
 	<p><input type="Submit" name="Submit" value="Login"></p>
 	<p><a href="Register.php">
 		<input type="Button" value="Register">

@@ -16,8 +16,10 @@
 		//if signed in
 		echo "You are sucessfully signed in <br />";
 		echo "You are in Logout Page";
+		setcookie("UserName",'',1);
 	?>
-
 </body>
-
+<br />
+<h3>You are Logged out Sucessfully</h3>
+<b><i>Click Here to <a href="LoginPage.php">Login again</a></i></b>
 </html>

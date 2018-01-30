@@ -9,11 +9,11 @@
 			throw new Exception("Account Exists", 1);
 		}
 
-		#insert the accoutn details
+		#insert the account details
 		$sta=$conn->prepare("insert into Users values('$UserName','$Password')");
 		$sta->execute();
 		echo "<br>Account Successfully Registered";
-		echo "<br>Click here to <a href='LoginPage.html'>Login</a>.";
+		echo "<br>Click here to <a href='LoginPage.php'>Login</a>.";
 	}
 	catch(Exception $e){
 		print("Account Already exists");

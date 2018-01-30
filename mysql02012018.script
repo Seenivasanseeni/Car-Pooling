@@ -294,3 +294,5 @@ mysql> describe Payments;
 mysql> ^C
 mysql> ^C
 mysql>  alter table Rides modify RideId int auto_increment;                     
+
+alter table Payments add column Amount Double not null

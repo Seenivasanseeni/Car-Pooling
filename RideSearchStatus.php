@@ -16,7 +16,7 @@
 		//if signed in
 		echo "You are in Ride Search Status Page";
 	?>	
-
+<form action="Confirm.php" method="POST">
 	<table border="">
 	<tr>
 		<th>RideID</th>
@@ -41,13 +41,15 @@
 				echo "<td>".$row['RideId']."</td>";
 				echo "<td>".$row['source']."</td>";
 				echo "<td>".$row['destination']."</td>";
-				echo "<td>"."<input type='radio' name='ID' value='".$row['RideId']."'>"."</td>";
+				echo "<td>"."<input type='radio' name='RideId' value='".$row['RideId']."'>"."</td>";
 			echo "</tr>";
 
 		}
 	?>
 	
 	</table>
+	<input type="Submit" name="Submit" value="Confirm">
+</form>
 <br />
 <a href="HomePage.php">Home</a>
 

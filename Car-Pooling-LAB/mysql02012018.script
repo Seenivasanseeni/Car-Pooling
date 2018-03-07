@@ -1,0 +1,298 @@
+mysql> use CarPool;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show Tables;
++-------------------+
+| Tables_in_CarPool |
++-------------------+
+| Users             |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> describe Users;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| UserName | varchar(20) | NO   | PRI | NULL    |       |
+| password | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> drop table USers;
+ERROR 1051 (42S02): Unknown table 'CarPool.USers'
+mysql> drop table Users;
+Query OK, 0 rows affected (0.31 sec)
+
+mysql> starts now
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'starts now' at line 1
+mysql> create table USers(UserName varchar(20) Primary key,password varchar(20) not null);
+Query OK, 0 rows affected (0.53 sec)
+
+mysql> create table Users(UserName varchar(20) Primary key,password varchar(20) not null);
+Query OK, 0 rows affected (0.34 sec)
+
+mysql> drop table USers;
+Query OK, 0 rows affected (0.20 sec)
+
+mysql> show Tables;
++-------------------+
+| Tables_in_CarPool |
++-------------------+
+| Users             |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> describe Tables;
+ERROR 1146 (42S02): Table 'CarPool.Tables' doesn't exist
+mysql> describe Users;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| UserName | varchar(20) | NO   | PRI | NULL    |       |
+| password | varchar(20) | NO   |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table Rides (RideId int primary Key,source varchar(20) not null,destination varchar(20) not null ,AccompanierUserName varchar(20) ,RiderUserName varchar(20) not null,Status enum('R','A'));
+Query OK, 0 rows affected (0.37 sec)
+
+mysql> describe Rides;
++---------------------+---------------+------+-----+---------+-------+
+| Field               | Type          | Null | Key | Default | Extra |
++---------------------+---------------+------+-----+---------+-------+
+| RideId              | int(11)       | NO   | PRI | NULL    |       |
+| source              | varchar(20)   | NO   |     | NULL    |       |
+| destination         | varchar(20)   | NO   |     | NULL    |       |
+| AccompanierUserName | varchar(20)   | YES  |     | NULL    |       |
+| RiderUserName       | varchar(20)   | NO   |     | NULL    |       |
+| Status              | enum('R','A') | YES  |     | NULL    |       |
++---------------------+---------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table Rides modify column RiderUserName varchar(20) null;
+Query OK, 0 rows affected (0.86 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Rides;
++---------------------+---------------+------+-----+---------+-------+
+| Field               | Type          | Null | Key | Default | Extra |
++---------------------+---------------+------+-----+---------+-------+
+| RideId              | int(11)       | NO   | PRI | NULL    |       |
+| source              | varchar(20)   | NO   |     | NULL    |       |
+| destination         | varchar(20)   | NO   |     | NULL    |       |
+| AccompanierUserName | varchar(20)   | YES  |     | NULL    |       |
+| RiderUserName       | varchar(20)   | YES  |     | NULL    |       |
+| Status              | enum('R','A') | YES  |     | NULL    |       |
++---------------------+---------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table Rides modify column Status not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'not null' at line 1
+mysql> alter table Rides modify column Status enum('R','A') not null;
+Query OK, 0 rows affected (0.57 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Rides;
++---------------------+---------------+------+-----+---------+-------+
+| Field               | Type          | Null | Key | Default | Extra |
++---------------------+---------------+------+-----+---------+-------+
+| RideId              | int(11)       | NO   | PRI | NULL    |       |
+| source              | varchar(20)   | NO   |     | NULL    |       |
+| destination         | varchar(20)   | NO   |     | NULL    |       |
+| AccompanierUserName | varchar(20)   | YES  |     | NULL    |       |
+| RiderUserName       | varchar(20)   | YES  |     | NULL    |       |
+| Status              | enum('R','A') | NO   |     | NULL    |       |
++---------------------+---------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table Rides ADD CONSTraint fk_Accom_Us_Name FOREIGN KEY (AccompanierUserName) references Users(UserName));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> alter table Rides ADD CONSTraint fk_Accom_Us_Name FOREIGN KEY (AccompanierUserName) references Users(UserName));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> show tables;
++-------------------+
+| Tables_in_CarPool |
++-------------------+
+| Rides             |
+| Users             |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table Rides ADD CONSTraint fk_Accom_Us_Name FOREIGN KEY (AccompanierUserName) references Users(UserName));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> 
+mysql> modify table Rides ADD CONSTraint fk_Accom_Us_Name FOREIGN KEY (AccompanierUserName) references Users(UserName));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'modify table Rides ADD CONSTraint fk_Accom_Us_Name FOREIGN KEY (AccompanierUserN' at line 1
+mysql> alter table Ridesmodify CONSTraint fk_Accom_Us_Name FOREIGN KEY (AccompanierUserName) references Users(UserName));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTraint fk_Accom_Us_Name FOREIGN KEY (AccompanierUserName) references Users(U' at line 1
+mysql> alter table Rides modify CONSTraint fk_Accom_Us_Name FOREIGN KEY (AccompanierUserName) references Users(UserName));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CONSTraint fk_Accom_Us_Name FOREIGN KEY (AccompanierUserName) references Users(U' at line 1
+mysql> alter table Rides add CONSTraint fk_Accom_Us_Name FOREIGN KEY (AccompanierUserName) references Users(UserName));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> alter table Rides add CONSTraint fk_Accom_Us_Name FOREIGN KEY (AccompanierUserName) references Users(UserName) on delete cascade);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> create table Rides (RideId int primary Key,source varchar(20) not null,destination varchar(20) not null ,AccompanierUserName varchar(20) ,RiderUserName varchar(20) not null,Status enum('R','A'));
+ERROR 1050 (42S01): Table 'Rides' already exists
+mysql> create table Ridesq (RideId int primary Key,source varchar(20) not null,destination varchar(20) not null ,AccompanierUserName varchar(20) ,RiderUserName varchar(20) not null,Status enum('R','A'),constraint fk_accom_Uname FOREIGN KEY(AccompanierUserName) references Users(UserName),constraint fk_Rider_Uname FOREIGNKEY (RiderUserName) references Users(UserName));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FOREIGNKEY (RiderUserName) references Users(UserName))' at line 1
+mysql> create table Ridesq (RideId int primary Key,source varchar(20) not null,destination varchar(20) not null ,AccompanierUserName varchar(20) ,RiderUserName varchar(20) not null,Status enum('R','A'),constraint fk_accom_Uname FOREIGN KEY(AccompanierUserName) references Users(UserName),constraint fk_Rider_Uname FOREIGN KEY (RiderUserName) references Users(UserName));
+Query OK, 0 rows affected (0.42 sec)
+
+mysql> describe Rides;
++---------------------+---------------+------+-----+---------+-------+
+| Field               | Type          | Null | Key | Default | Extra |
++---------------------+---------------+------+-----+---------+-------+
+| RideId              | int(11)       | NO   | PRI | NULL    |       |
+| source              | varchar(20)   | NO   |     | NULL    |       |
+| destination         | varchar(20)   | NO   |     | NULL    |       |
+| AccompanierUserName | varchar(20)   | YES  |     | NULL    |       |
+| RiderUserName       | varchar(20)   | YES  |     | NULL    |       |
+| Status              | enum('R','A') | NO   |     | NULL    |       |
++---------------------+---------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into Rider Values(1,"s","g","h","g",'A')
+    -> ;
+ERROR 1146 (42S02): Table 'CarPool.Rider' doesn't exist
+mysql> ^C
+mysql> ^C
+mysql> ^C
+mysql>  insert into Riders Values(1,"s","g","h","g",'A');
+ERROR 1146 (42S02): Table 'CarPool.Riders' doesn't exist
+mysql>  insert into Rides Values(1,"s","g","h","g",'A');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> ^C
+mysql> select * from Rides;
++--------+--------+-------------+---------------------+---------------+--------+
+| RideId | source | destination | AccompanierUserName | RiderUserName | Status |
++--------+--------+-------------+---------------------+---------------+--------+
+|      1 | s      | g           | h                   | g             | A      |
++--------+--------+-------------+---------------------+---------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from Users;
+Empty set (0.00 sec)
+
+mysql> create table Ridesq (RideId int primary Key,source varchar(20) not null,destination varchar(20) not null ,AccompanierUserName varchar(20) ,RiderUserName varchar(20) not null,Status enum('R','A'),constraint fk_accom_Uname FOREIGN KEY(AccompanierUserName) references Users(UserName),constraint fk_Rider_Uname FOREIGN KEY (RiderUserName) references Users(UserName));
+ERROR 1050 (42S01): Table 'Ridesq' already exists
+mysql> insert into Ridesq Values(1,"s","g","h","g",'A')
+    -> ;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`CarPool`.`Ridesq`, CONSTRAINT `fk_accom_Uname` FOREIGN KEY (`AccompanierUserName`) REFERENCES `Users` (`UserName`))
+mysql> drop table Rides;
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> ^C
+mysql> =================================
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '=================================' at line 1
+mysql> create table Rides (RideId int primary Key,source varchar(20) not null,destination varchar(20) not null ,AccompanierUserName varchar(20) ,RiderUserName varchar(20) not null,Status enum('R','A'),constraint fk_accom_Uname FOREIGN KEY(AccompanierUserName) references Users(UserName),constraint fk_Rider_Uname FOREIGN KEY (RiderUserName) references Users(UserName));
+ERROR 1022 (23000): Can't write; duplicate key in table 'Rides'
+mysql> show Tables;
++-------------------+
+| Tables_in_CarPool |
++-------------------+
+| Ridesq            |
+| Users             |
++-------------------+
+2 rows in set (0.00 sec)
+
+mysql> drop table Ridesq
+    -> ;
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> create table Rides (RideId int primary Key,source varchar(20) not null,destination varchar(20) not null ,AccompanierUserName varchar(20) ,RiderUserName varchar(20) not null,Status enum('R','A'),constraint fk_accom_Uname FOREIGN KEY(AccompanierUserName) references Users(UserName),constraint fk_Rider_Uname FOREIGN KEY (RiderUserName) references Users(UserName));
+Query OK, 0 rows affected (0.34 sec)
+
+mysql> describe Rides;
++---------------------+---------------+------+-----+---------+-------+
+| Field               | Type          | Null | Key | Default | Extra |
++---------------------+---------------+------+-----+---------+-------+
+| RideId              | int(11)       | NO   | PRI | NULL    |       |
+| source              | varchar(20)   | NO   |     | NULL    |       |
+| destination         | varchar(20)   | NO   |     | NULL    |       |
+| AccompanierUserName | varchar(20)   | YES  | MUL | NULL    |       |
+| RiderUserName       | varchar(20)   | NO   | MUL | NULL    |       |
+| Status              | enum('R','A') | YES  |     | NULL    |       |
++---------------------+---------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into Rides Values(1,"s","g","h","g",'A')
+    -> ;
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`CarPool`.`Rides`, CONSTRAINT `fk_accom_Uname` FOREIGN KEY (`AccompanierUserName`) REFERENCES `Users` (`UserName`))
+mysql> 
+mysql> 
+mysql> create table Payments(PaymentId Int Primary KEy Auto Increment, RideId Int not null,constraint fk_RideId FOREIGN KEY (RideID) references Rides(RideId));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Auto Increment, RideId Int not null,constraint fk_RideId FOREIGN KEY (RideID) re' at line 1
+mysql> create table Payments(PaymentId Int Primary KEy Auto Increment 0, RideId Int not null,constraint fk_RideId FOREIGN KEY (RideID) references Rides(RideId));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Auto Increment 0, RideId Int not null,constraint fk_RideId FOREIGN KEY (RideID) ' at line 1
+mysql> create table Payments(PaymentId Int Primary KEy , RideId Int not null,constraint fk_RideId FOREIGN KEY (RideID) references Rides(RideId));
+Query OK, 0 rows affected (0.43 sec)
+
+mysql> drop table Payments;
+Query OK, 0 rows affected (0.21 sec)
+
+mysql> create table Payments(PaymentId Int Primary KEy AUTO_INCREMENT , RideId Int not null,constraint fk_RideId FOREIGN KEY (RideID) references Rides(RideId));
+Query OK, 0 rows affected (0.47 sec)
+
+mysql> describe Payments;
++-----------+---------+------+-----+---------+----------------+
+| Field     | Type    | Null | Key | Default | Extra          |
++-----------+---------+------+-----+---------+----------------+
+| PaymentId | int(11) | NO   | PRI | NULL    | auto_increment |
+| RideId    | int(11) | NO   | MUL | NULL    |                |
++-----------+---------+------+-----+---------+----------------+
+2 rows in set (0.04 sec)
+
+mysql> create table Payments(PaymentId Int Primary KEy AUTO_INCREMENT , RideId Int not null,constraint fk_RideId FOREIGN KEY (RideID) references Rides(RideId));
+ERROR 1050 (42S01): Table 'Payments' already exists
+mysql> drop table Payments;
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> create table Payments(PaymentId Int Primary KEy AUTO_INCREMENT , RideId Int not null,constraint fk_RideId FOREIGN KEY (RideID) references Rides(RideId));
+Query OK, 0 rows affected (0.41 sec)
+
+mysql> describe Payments;
++-----------+---------+------+-----+---------+----------------+
+| Field     | Type    | Null | Key | Default | Extra          |
++-----------+---------+------+-----+---------+----------------+
+| PaymentId | int(11) | NO   | PRI | NULL    | auto_increment |
+| RideId    | int(11) | NO   | MUL | NULL    |                |
++-----------+---------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> select * from Users;
+Empty set (0.00 sec)
+
+mysql> select * from Table
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Table' at line 1
+mysql> select * from Rides;
+Empty set (0.00 sec)
+
+mysql>  select * from Payments;
+Empty set (0.00 sec)
+
+mysql> alter table Payments add column Amount float not null;
+Query OK, 0 rows affected (0.96 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe Payments;
++-----------+---------+------+-----+---------+----------------+
+| Field     | Type    | Null | Key | Default | Extra          |
++-----------+---------+------+-----+---------+----------------+
+| PaymentId | int(11) | NO   | PRI | NULL    | auto_increment |
+| RideId    | int(11) | NO   | MUL | NULL    |                |
+| Amount    | float   | NO   |     | NULL    |                |
++-----------+---------+------+-----+---------+----------------+
+3 rows in set (0.32 sec)
+
+mysql> ^C
+mysql> ^C
+mysql>  alter table Rides modify RideId int auto_increment;                     
+
+alter table Payments add column Amount Double not null

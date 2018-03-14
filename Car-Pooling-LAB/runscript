@@ -1,0 +1,19 @@
+
+create database CarPool;
+use CarPool;
+show Tables;
+
+create table Users(UserName varchar(20) Primary key,password varchar(20) not null);
+
+show Tables;
+
+describe Users;
+
+
+
+
+ create table Rides (RideId int primary Key AUTO_INCREMENT,source varchar(20) not null,destination varchar(20) not null ,AccompanierUserName varchar(20) ,RiderUserName varchar(20) not null,Status enum('R','A'),constraint fk_accom_Uname FOREIGN KEY(AccompanierUserName) references Users(UserName),constraint fk_Rider_Uname FOREIGN KEY (RiderUserName) references Users(UserName));
+
+
+ create table Payments(PaymentId Int Primary KEy AUTO_INCREMENT , RideId Int not null ,Amount Double not null,constraint fk_RideId FOREIGN KEY (RideID) references Rides(RideId));
+ describe Payments;
